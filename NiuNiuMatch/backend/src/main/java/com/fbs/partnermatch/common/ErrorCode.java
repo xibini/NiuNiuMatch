@@ -1,7 +1,5 @@
 package com.fbs.partnermatch.common;
 
-// 讲师 【coder_鱼_皮】 https://space.bilibili.com/12890453/
-
 /**
  * 错误码
  *
