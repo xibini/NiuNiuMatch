@@ -2,10 +2,28 @@
 // import {useRoute} from "vue-router";
 import {ref} from "vue";
 // import {ref} from "vue/dist/vue";
-
+// search页面传过来的参数
 // const route = useRoute();
 // console.log(route);
 // const { tags } = route.query;
+
+// 后台获取数据的函数地址写这
+/*
+获取标签
+ */
+// onMounted(() => {
+//   myAxios.get('/user/search/tags', {
+//     params: {
+//       tagNameList: tags,
+//     }
+//   })
+//       .then(function (response) {
+//         console.log("/user/search/tags succeed", response);
+//       })
+//       .catch(function (error) {
+//         console.log("/user/search/tags error", error);
+//       });
+// })
 
 const mockUser = {
   id: 123456,
@@ -25,25 +43,25 @@ const userList = ref([mockUser, mockUser]);
 </script>
 
 <template>
-<div class="card">
-  <van-card
-      v-for="user in userList"
-      style="margin-top: 8px;margin-left: 8px"
-      :tag="`${user.username} (${user.gender})`"
-      :desc="user.profile"
-      :title="user.username"
-      :thumb="user.avatarUrl"
-  >
-    <template #tags>
-      <van-tag plain type="primary" v-for="tag in mockUser.tags">
-        {{ tag }}
-      </van-tag>
-    </template>
-    <template #footer>
-      <van-button size="mini">联系我</van-button>
-    </template>
-  </van-card>
-</div>
+  <div class="card">
+    <van-card
+        v-for="user in userList"
+        style="margin-top: 8px;margin-left: 8px"
+        :tag="`${user.username} (${user.gender})`"
+        :desc="user.profile"
+        :title="user.username"
+        :thumb="user.avatarUrl"
+    >
+      <template #tags>
+        <van-tag plain type="primary" v-for="tag in mockUser.tags">
+          {{ tag }}
+        </van-tag>
+      </template>
+      <template #footer>
+        <van-button size="mini">联系我</van-button>
+      </template>
+    </van-card>
+  </div>
 </template>
 
 <style scoped>
