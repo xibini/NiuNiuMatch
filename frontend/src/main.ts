@@ -3,13 +3,17 @@ import './style.css'
 import App from './App.vue'
 import * as VueRouter from 'vue-router';
 import "vant/lib/index.css";
-import { NavBar, Icon, Tabbar, TabbarItem } from 'vant';
+import {NavBar, Icon, Tabbar, TabbarItem, Button} from 'vant';
 import routes from "./config/route.ts";
 import { Search, Tag, Divider, Collapse, CollapseItem, TreeSelect, Col, Row } from 'vant';
+import { Cell} from 'vant';
+import { Form, Field, CellGroup } from 'vant';
+import { Card } from 'vant';
 
 
 
 const app = createApp(App);
+app.use(Button);
 app.use(NavBar);
 app.use(Icon);
 app.use(Tabbar);
@@ -22,7 +26,13 @@ app.use(CollapseItem);
 app.use(TreeSelect);
 app.use(Col);
 app.use(Row);
-
+app.use(Cell);
+app.use(Form);
+app.use(Field);
+app.use(Form);
+app.use(Field);
+app.use(CellGroup);
+app.use(Card);
 // 定义路由组件.
 // 也可以从其他文件导入
 // 创建路由实例并传递 `routes` 配置

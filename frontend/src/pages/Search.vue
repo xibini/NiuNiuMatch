@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import {useRouter} from "vue-router";
 
+const router = useRouter();
 
 // 标签列表
 // 搜索文本
@@ -40,9 +42,9 @@ const onSearch = () => {
   // 将所有子标签拿出来拼成一个数组
   // console.log(tagList.flatMap(parentTag => parentTag.children))
   tagList.value = originTagList.map(parentTag => {
-    const temptChildren = [...parentTag.children];
-    const temptParentTag = {...parentTag};
-    temptParentTag.children = temptChildren.filter(item => item.text.includes(searchText.value));
+    const temptChildren = [...parentTag.children]; // 保留原来的子标签
+    const temptParentTag = {...parentTag}; // 保留原来的父标签
+    temptParentTag.children = temptChildren.filter(item => item.text.includes(searchText.value)); // 过滤掉子标签
     return temptParentTag;
   });
 }
@@ -96,6 +98,18 @@ const doClose = ( tag:any) => {
   })
 };
 
+/**
+ * 点击搜索按钮后，跳转到搜索结果页面
+ */
+const doSearchResult = () => {
+  router.push({
+    path: '/User/List',
+    query: {
+      tags: activeIds.value
+    },
+  })
+}
+
 
 </script>
 
@@ -141,6 +155,9 @@ const doClose = ( tag:any) => {
         :items="tagList"
     />
   </div>
+  <div class="searchBtn">
+    <van-button type="primary" @click="doSearchResult()">搜索</van-button>
+  </div>
 
 
 
@@ -178,6 +195,13 @@ const doClose = ( tag:any) => {
  .tree {
    position: fixed;
    top:300px;
+   left: 0;
+   right: 0;
+ }
+
+ .searchBtn {
+   position: fixed;
+   top: 520px;
    left: 0;
    right: 0;
  }
